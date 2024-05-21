@@ -17,8 +17,8 @@
 
 # 실제 화면
 ## 로그인
-<img src="https://github.com/have-a-meal/admin_have_a_meal/assets/77985708/ea3bbe8b-d6cd-4949-820b-54a5837b1a59.png"  width="175" height="400"/>
+<img src="https://github.com/have-a-meal/mobile_admin_have_a_meal/assets/77985708/c69dff6a-6c9f-47f8-acce-3d25775e6d3c.png"  width="175" height="400"/>
 
 ## 식권 인증
-<img src="https://github.com/have-a-meal/admin_have_a_meal/assets/77985708/13784f2d-c191-4510-9de7-cc39a208651e.png"  width="175" height="400"/>
-<img src="https://github.com/have-a-meal/admin_have_a_meal/assets/77985708/ca5f4bce-a740-4ccd-84c5-971b198c5608.png"  width="175" height="400"/>
+<img src="https://github.com/have-a-meal/mobile_admin_have_a_meal/assets/77985708/410999ea-65bc-4853-97cf-3147ccbeba32.png"  width="175" height="400"/>
+<img src="https://github.com/have-a-meal/mobile_admin_have_a_meal/assets/77985708/f54855a6-6f9e-4456-9544-3c4875aec432.png"  width="175" height="400"/>
