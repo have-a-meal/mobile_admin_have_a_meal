@@ -1,16 +1,24 @@
-# admin_have_a_meal
+# 프로젝트 정보
 
-A new Flutter project.
+<a><img src="https://img.shields.io/badge/-Flutter-387ADF?style=flat-plastic&logo=Flutter&logoColor=white"/>
+<img src="https://img.shields.io/badge/-Provider-FBA834?style=flat-plastic&logo=Provider&logoColor=white"/>
+<img src="https://img.shields.io/badge/-Github-black?style=flat-plastic&logo=Github&logoColor=white"/></a>
 
-## Getting Started
+개발자 : 이재현
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+프로젝트 한줄소개 : 관리자가 학생 식권의 QR을 인증하는 프로그램
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+프로젝트 화면 구조
+- 로그인
+- QR 코드 인증
+
+
+# 실제 화면
+## 로그인
+<img src="https://github.com/have-a-meal/mobile_admin_have_a_meal/assets/77985708/c69dff6a-6c9f-47f8-acce-3d25775e6d3c.png"  width="175" height="400"/>
+
+## 식권 인증
+<img src="https://github.com/have-a-meal/mobile_admin_have_a_meal/assets/77985708/410999ea-65bc-4853-97cf-3147ccbeba32.png"  width="175" height="400"/>
+<img src="https://github.com/have-a-meal/mobile_admin_have_a_meal/assets/77985708/f54855a6-6f9e-4456-9544-3c4875aec432.png"  width="175" height="400"/>
