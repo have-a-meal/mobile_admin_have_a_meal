@@ -1,15 +1,29 @@
+import 'dart:convert';
 import 'dart:io';
 
+import 'package:admin_have_a_meal/constants/http_ip.dart';
 import 'package:admin_have_a_meal/features/account/sign_in_screen.dart';
 import 'package:admin_have_a_meal/widget_tools/swag_platform_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:http/http.dart' as http;
+
+class TicketQrAuthScreenArgs {
+  final int mealId;
+
+  TicketQrAuthScreenArgs({required this.mealId});
+}
 
 class TicketQrAuthScreen extends StatefulWidget {
   static const routeName = "ticketQrAuth";
-  static const routeURL = "/ticketQrAuth";
-  const TicketQrAuthScreen({super.key});
+  static const routeURL = "ticketQrAuth";
+  const TicketQrAuthScreen({
+    super.key,
+    required this.mealId,
+  });
+
+  final int mealId;
 
   @override
   State<TicketQrAuthScreen> createState() => _TicketQrAuthScreenState();
@@ -44,7 +58,7 @@ class _TicketQrAuthScreenState extends State<TicketQrAuthScreen> {
       await _qrViewController?.pauseCamera();
 
       if (context.mounted) {
-        await _onQRAuth(context);
+        await _onQRAuth(context, scanData);
       }
 
       setState(() {
@@ -53,32 +67,81 @@ class _TicketQrAuthScreenState extends State<TicketQrAuthScreen> {
     });
   }
 
-  Future<void> _onQRAuth(BuildContext context) async {
+  Future<void> _onQRAuth(BuildContext context, Barcode scanData) async {
     setState(() {
       _isLoading = true;
     });
-    await Future.delayed(const Duration(seconds: 3));
+
+    String accessToken = "";
+    String refreshToken = "";
     if (context.mounted) {
-      await swagPlatformDialog(
-        context: context,
-        title: "인증",
-        message: "식권 인증이 완료 되었습니다!",
-        actions: [
-          ElevatedButton(
-            onPressed: () async {
-              await _qrViewController?.resumeCamera();
-              setState(() {
-                _isLoading = false;
-              });
-              if (context.mounted) {
-                context.pop();
-              }
-            },
-            child: const Text("확인"),
-          ),
-        ],
-      );
+      print(scanData.code);
+
+      // 정규 표현식 패턴
+      RegExp regExp = RegExp(r'accessToken=([^,]+), refreshToken=([^,)]+)');
+
+      // 정규 표현식을 사용하여 매칭된 결과를 찾기
+      Match? match = regExp.firstMatch(scanData.code.toString());
+
+      if (match != null) {
+        // 그룹에서 accessToken과 refreshToken 추출
+        accessToken = match.group(1) ?? '';
+        refreshToken = match.group(2) ?? '';
+        print(accessToken);
+        print(refreshToken);
+      } else {
+        print('토큰을 찾을 수 없습니다.');
+      }
+
+      final url = Uri.parse("${HttpIp.apiUrl}/ticket");
+      final headers = {'Content-Type': 'application/json'};
+      final data = {
+        'accessToken': accessToken,
+        'mealId': widget.mealId,
+      };
+      final response =
+          await http.put(url, headers: headers, body: jsonEncode(data));
+
+      if (response.statusCode >= 200 && response.statusCode < 300) {
+        await swagPlatformDialog(
+          context: context,
+          title: "인증",
+          message: "식권 인증이 완료 되었습니다!",
+          actions: [
+            ElevatedButton(
+              onPressed: () async {
+                if (context.mounted) {
+                  context.pop();
+                }
+                await _qrViewController?.resumeCamera();
+              },
+              child: const Text("확인"),
+            ),
+          ],
+        );
+      } else {
+        if (!mounted) return;
+        await swagPlatformDialog(
+          context: context,
+          title: "통신 오류",
+          message: response.body,
+          actions: [
+            ElevatedButton(
+              onPressed: () async {
+                if (context.mounted) {
+                  context.pop();
+                }
+                await _qrViewController?.resumeCamera();
+              },
+              child: const Text("확인"),
+            ),
+          ],
+        );
+      }
     }
+    setState(() {
+      _isLoading = false;
+    });
   }
 
   @override
@@ -100,7 +163,7 @@ class _TicketQrAuthScreenState extends State<TicketQrAuthScreen> {
           body: Column(
             children: <Widget>[
               Expanded(
-                flex: 5,
+                flex: 6,
                 child: Stack(
                   children: [
                     QRView(
@@ -161,13 +224,13 @@ class _TicketQrAuthScreenState extends State<TicketQrAuthScreen> {
                         ? const Text("인증 중지")
                         : const Text("인증 시작"),
                     style: const ButtonStyle(
-                      padding: MaterialStatePropertyAll(
+                      padding: WidgetStatePropertyAll(
                         EdgeInsets.symmetric(
                           vertical: 20,
                           horizontal: 40,
                         ),
                       ),
-                      shape: MaterialStatePropertyAll(
+                      shape: WidgetStatePropertyAll(
                         RoundedRectangleBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(10))),

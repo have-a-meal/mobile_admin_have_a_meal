@@ -1,3 +1,4 @@
+import 'package:admin_have_a_meal/features/qr/menu_select_screen.dart';
 import 'package:admin_have_a_meal/features/qr/ticket_qr_auth_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -94,7 +95,7 @@ class _SignInScreenState extends State<SignInScreen> {
     //     message: response.body,
     //   );
     // }
-    context.replaceNamed(TicketQrAuthScreen.routeName);
+    context.replaceNamed(MenuSelectScreen.routeName);
   }
 
   @override
