@@ -28,14 +28,14 @@
 
 - cupertino_icons: ^1.0.6 (애플 스타일 아이콘)
 - font_awesome_flutter: ^10.7.0 (아이콘 라이브러리)
-- http: ^1.2.1 (통신 라이브러리)
+- gap: ^3.0.1 (Gap 라이브러리)
 - flutter_secure_storage: ^9.0.0 (AES 스토리지 라이브러리)
 - provider: ^6.1.2 (상태 관리 라이브러리)
 - go_router: ^13.2.2 (라우터 페이지 관리 라이브러리)
 - intl: ^0.19.0 (날짜, 단위 포맷 라이브러리)
 - flutter_localization: ^0.2.0 (한국어 적용 라이브러리)
-- gap: ^3.0.1 (Gap 라이브러리)
-- iamport_flutter: ^0.10.18 (아임포트 결제 관리 라이브러리)
+- qr_code_scanner: ^1.0.1 (qr 코드 스캔 라이브러리)
+- http: ^1.2.1 (통신 라이브러리)
 
 
 # 실제 화면
