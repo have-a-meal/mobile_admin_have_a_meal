@@ -27,7 +27,7 @@
 ## 라이브러리
 
 - cupertino_icons: ^1.0.6 (애플 스타일 아이콘)
-- font_awesome_flutter: ^10.7.0 (아이콘)
+- font_awesome_flutter: ^10.7.0 (기본 아이콘)
 - gap: ^3.0.1 (Gap)
 - flutter_secure_storage: ^9.0.0 (AES 스토리지)
 - provider: ^6.1.2 (상태 관리)
