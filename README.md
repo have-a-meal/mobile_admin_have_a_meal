@@ -38,7 +38,7 @@
 - http: ^1.2.1 (통신 라이브러리)
 
 
-# 실제 화면
+# 프로토타입 화면
 ## 로그인
 <img src="https://github.com/have-a-meal/mobile_admin_have_a_meal/assets/77985708/c69dff6a-6c9f-47f8-acce-3d25775e6d3c.png"  width="175" height="400"/>
 
